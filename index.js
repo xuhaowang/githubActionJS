@@ -14,11 +14,15 @@ try {
 
   (async() => {
     
-    await exec.exec('gittt', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
+    try{
+      await exec.exec('gittt', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
 
-    await exec.exec('export', ["KUBECONFIG=\"$(kind get kubeconfig-path)\""])
+      await exec.exec('export', ["KUBECONFIG=\"$(kind get kubeconfig-path)\""])
     
-    await exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
+      await exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
+    } catch(err) {
+      core.setFailed(err.message)
+    }
     // your code
     // ...
 
