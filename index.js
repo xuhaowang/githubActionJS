@@ -2,7 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const exec  = require('@actions/exec');
 
-try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
@@ -14,7 +13,9 @@ try {
 
   (async() => {
     
-    await exec.exec('git', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
+    await exec.exec('gittt', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
+
+    await exec.exec('export', ["KUBECONFIG=\"$(kind get kubeconfig-path)\""])
     
     await exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
     // your code
@@ -26,7 +27,3 @@ try {
 
   // exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
   
-
-} catch (error) {
-  core.setFailed(error.message);
-}

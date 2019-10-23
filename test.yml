@@ -1,11 +1,13 @@
 ---
 - hosts: localhost
   connection: local
-
+  
+  vars:
+    kubeconfig: "{{ lookup('env','KUBECONFIG') }}"
 
   tasks:
     - block:
         - name: Test JS
-          shell: echo "Hello World"
+          shell: echo {{ kubeconfig }}
           args:
             executable: /bin/bash
