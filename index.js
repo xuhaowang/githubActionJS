@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const exec  = require('child_process');
+const exec  = require('@actions/exec');
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -12,15 +12,8 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
-  exec('ansible-playbook test.yml', (err, stdout, stderr) => {
-    if (err) {
-      // node couldn't execute the command
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-
-  });
+  await exec.exec('ansible-playbook', ['test.yml']);
+  
 
 } catch (error) {
   core.setFailed(error.message);
