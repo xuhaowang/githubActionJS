@@ -12,7 +12,7 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
-  await exec.exec('ansible-playbook', ['test.yml']);
+  exec.exec('ansible-playbook', ['test.yml']);
   
 
 } catch (error) {
