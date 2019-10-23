@@ -14,9 +14,9 @@ try {
 
   (async() => {
     
-    exec.exec('git', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
+    await exec.exec('git', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
     
-    exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
+    await exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
     // your code
     // ...
 
