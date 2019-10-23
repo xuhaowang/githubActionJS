@@ -12,7 +12,9 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
-  exec.exec('ansible-playbook', ['test.yml']);
+  exec.exec('git', ['clone', 'https://github.com/xuhaowang/githubActionJS.git']);
+
+  exec.exec('ansible-playbook', ['-v', 'githubActionJS/test.yml']);
   
 
 } catch (error) {
