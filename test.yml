@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+
+
+  tasks:
+    - block:
+        - name: Test JS
+          shell: echo "Hello World"
+          args:
+            executable: /bin/bash
